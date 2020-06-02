@@ -12,9 +12,15 @@ app.on('ready', _ => {
     });
 
     mainWindow.loadURL('file:///C:/Git/opt/electron/ipc-demo/src/index.html');
+    console.log('mainWindow', mainWindow);
 
     mainWindow.on('closed', _ => {
         console.log('closed!');
         mainWindow = null;
-    })
+    });
+
+    mainWindow.webContents.on('did-finish-load', _ => {
+        console.log('\nmainWindow.webContents', mainWindow.webContents);
+        // console.log(mainWindow.webContents.getUrl());
+    });
 });
